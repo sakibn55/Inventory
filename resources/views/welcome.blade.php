@@ -18,14 +18,12 @@
 
 <body id="page-top">
     <div id="app">
-
-
         <div id="wrapper">
             <!-- Sidebar -->
             <ul class="navbar-nav sidebar sidebar-light accordion" id="accordionSidebar">
                 <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
                     <div class="sidebar-brand-icon">
-                        <img src="img/logo/logo2.png">
+                        <img src="{{ asset('backend/img/logo/logo2.png') }}">
                     </div>
                     <div class="sidebar-brand-text mx-3">RuangAdmin</div>
                 </a>
@@ -208,7 +206,7 @@
                                     </h6>
                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="img/man.png" style="max-width: 60px"
+                                            <img class="rounded-circle" src="{{asset('backend/img/man.png')}}" style="max-width: 60px"
                                                 alt="">
                                             <div class="status-indicator bg-success"></div>
                                         </div>
@@ -221,7 +219,7 @@
                                     </a>
                                     <a class="dropdown-item d-flex align-items-center" href="#">
                                         <div class="dropdown-list-image mr-3">
-                                            <img class="rounded-circle" src="img/girl.png" style="max-width: 60px"
+                                            <img class="rounded-circle" src="{{asset('backend/img/girl.png')}}" style="max-width: 60px"
                                                 alt="">
                                             <div class="status-indicator bg-default"></div>
                                         </div>
@@ -290,7 +288,7 @@
                             <li class="nav-item dropdown no-arrow">
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                    <img class="img-profile rounded-circle" src="img/boy.png" style="max-width: 60px">
+                                    <img class="img-profile rounded-circle" src="{{asset('backend/img/boy.png')}}" style="max-width: 60px">
                                     <span class="ml-2 d-none d-lg-inline text-white small">Maman Ketoprak</span>
                                 </a>
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -323,14 +321,13 @@
                     </div>
                     <!---Container Fluid-->
                 </div>
-
                 <!-- Footer -->
                 <footer class="sticky-footer bg-white">
                     <div class="container my-auto">
                         <div class="copyright text-center my-auto">
-                            <script>
+                            {{-- <script>
                                 document.write(new Date().getFullYear());
-                            </script> - developed by
+                            </script> - developed by --}}
                             <b><a href="https://www.easylearningbd.com/" target="_blank">Easy Learning</a></b>
                             </span>
                         </div>
@@ -338,9 +335,7 @@
                 </footer>
                 <!-- Footer -->
             </div>
-
         </div>
-
     </div>
 
     <!-- Scroll to top -->
@@ -359,8 +354,6 @@
 
         }
     </script> --}}
-
-
 
 
     <script src="{{ asset('backend/vendor/jquery-easing/jquery.easing.min.js') }}"></script>

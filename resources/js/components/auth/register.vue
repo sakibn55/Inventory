@@ -1,5 +1,3 @@
-
-
 <template>
   <div>
     <div class="row justify-content-center">
@@ -12,7 +10,62 @@
                   <div class="text-center">
                     <h1 class="h4 text-gray-900 mb-4">Register</h1>
                   </div>
-
+                  <form>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputFirstName"
+                        placeholder="Enter First Name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="text"
+                        class="form-control"
+                        id="exampleInputLastName"
+                        placeholder="Enter Last Name"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="email"
+                        class="form-control"
+                        id="exampleInputEmail"
+                        aria-describedby="emailHelp"
+                        placeholder="Enter Email Address"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="exampleInputPassword"
+                        placeholder="Password"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <input
+                        type="password"
+                        class="form-control"
+                        id="exampleInputPasswordRepeat"
+                        placeholder="Repeat Password"
+                      />
+                    </div>
+                    <div class="form-group">
+                      <button type="submit" class="btn btn-primary btn-block">
+                        Register
+                      </button>
+                    </div>
+                    <hr />
+                  </form>
+                  <hr />
+                  <div class="text-center">
+                    <router-link class="font-weight-bold small" to="/"
+                      >Already have an account?</router-link
+                    >
+                  </div>
+                  <div class="text-center"></div>
                 </div>
               </div>
             </div>
@@ -26,9 +79,7 @@
 
 
 <script type="text/javascript">
-export default {
-
-};
+export default {};
 </script>
 
 
