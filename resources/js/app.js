@@ -34,7 +34,10 @@ const router = new VueRouter({
          toast.addEventListener('mouseleave', Swal.resumeTimer)
      }
  });
- window.Toast = Toast;
+window.Toast = Toast;
+ // Import Notification Class
+ import Notification from './Helpers/Notification';
+ window.Notification = Notification
 const app = new Vue({
     el: '#app',
     router

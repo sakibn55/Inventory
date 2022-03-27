@@ -25,11 +25,7 @@ export const routes = [{
          component: home,
          name: 'home'
     },
-       {
-           path: '/forget',
-           component: forget,
-           name: 'forget'
-       }, {
+        {
            path: '/logout',
            component: logout,
            name: 'logout'
