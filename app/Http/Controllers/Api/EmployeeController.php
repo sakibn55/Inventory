@@ -7,6 +7,7 @@ use App\Models\Employee;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\File;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -17,6 +18,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
+        if (!Auth::user()) {
+            return response()->json('Unauthorized action!', 405);
+        }
         $employee = Employee::orderByDesc("created_at")->get();
         return response()->json($employee);
     }
@@ -30,33 +34,43 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        if (!Auth::user()) {
+            return response()->json('Unauthorized action!', 405);
+        }
         $validateData = $request->validate([
             'name' => 'required|max:255',
             'email' => 'required|email',
             'phone' => 'required|unique:employees',
         ]);
-        $image_url = null;
-        if ($request->photo) {
-            $position = strpos($request->photo, ';');
-            $sub = substr($request->photo, 0, $position);
-            $ext = explode('/', $sub)[1];
+        try {
+            $image_url = null;
+            if ($request->photo) {
+                $position = strpos($request->photo, ';');
+                $sub = substr($request->photo, 0, $position);
+                $ext = explode('/', $sub)[1];
 
-            $name = time() . "." . $ext;
-            $img = Image::make($request->photo)->resize(240, 200);
-            $upload_path = 'backend/employee/';
-            $image_url = $upload_path . $name;
-            $img->save($image_url);
+                $name = time() . "." . $ext;
+                $img = Image::make($request->photo)->resize(240, 200);
+                $upload_path = 'backend/employee/';
+                $image_url = $upload_path . $name;
+                $img->save($image_url);
+            }
+            $employee = new Employee();
+            $employee->name = $request->name;
+            $employee->email = $request->email;
+            $employee->phone = $request->phone;
+            $employee->sallery = $request->sallery;
+            $employee->address = $request->address;
+            $employee->nid = $request->nid;
+            $employee->joining_date = $request->joining_date;
+            $employee->photo = $image_url;
+            $employee->save();
+            return response()->json($employee, 201);
+        } catch (\Throwable $e) {
+            return response()->json($e->getMessage(), 400);
+        } catch (\PDOException $e) {
+            return response()->json($e->getMessage(), 400);
         }
-        $employee = new Employee();
-        $employee->name = $request->name;
-        $employee->email = $request->email;
-        $employee->phone = $request->phone;
-        $employee->sallery = $request->sallery;
-        $employee->address = $request->address;
-        $employee->nid = $request->nid;
-        $employee->joining_date = $request->joining_date;
-        $employee->photo = $image_url;
-        $employee->save();
     }
 
     /**
@@ -67,6 +81,9 @@ class EmployeeController extends Controller
      */
     public function show(Employee $employee)
     {
+        if (!Auth::user()) {
+            return response()->json('Unauthorized action!', 405);
+        }
         return response()->json($employee, 200);
     }
 
@@ -79,6 +96,9 @@ class EmployeeController extends Controller
      */
     public function update(Request $request, $id)
     {
+        if (!Auth::user()) {
+            return response()->json('Unauthorized action!', 405);
+        }
         $data = array();
         $data['name'] = $request->name;
         $data['email'] = $request->email;
@@ -124,6 +144,9 @@ class EmployeeController extends Controller
      */
     public function destroy(Employee $employee)
     {
+        if (!Auth::user()) {
+            return response()->json('Unauthorized action!', 405);
+        }
         $photo = $employee->photo;
         $result = File::exists($photo);
         if ($result != null) {

@@ -180,6 +180,7 @@
 
 
 <script type="text/javascript">
+const token = localStorage.getItem('token');
 export default {
   created() {
     if (!User.loggedIn()) {
@@ -206,7 +207,11 @@ export default {
   created() {
     let id = this.$route.params.id;
     axios
-      .get("/api/employee/" + id)
+      .get("/api/employee/" + id,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
       .then(({ data }) => (this.form = data))
       .catch((error) => console.log(error));
   },
@@ -227,7 +232,11 @@ export default {
     employeeUpdate() {
       let id = this.$route.params.id;
       axios
-        .patch("/api/employee/" + id, this.form)
+        .patch("/api/employee/" + id, this.form,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
         .then(() => {
           this.$router.push({ name: "employee" });
           Notification.success();

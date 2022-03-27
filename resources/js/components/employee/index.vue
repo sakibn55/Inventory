@@ -84,6 +84,7 @@
 
 
 <script type="text/javascript">
+const token = localStorage.getItem('token');
 export default {
   created() {
     if (!User.loggedIn()) {
@@ -107,7 +108,11 @@ export default {
   methods: {
     allEmployee() {
       axios
-        .get("/api/employee/")
+        .get("/api/employee",{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
         .then(({ data }) => (this.employees = data))
         .catch();
     },
@@ -123,7 +128,11 @@ export default {
       }).then((result) => {
         if (result.value) {
           axios
-            .delete("/api/employee/" + id)
+            .delete("/api/employee/" + id,{
+                headers: {
+                    'Authorization': `Bearer ${token}`
+                }
+            })
             .then(() => {
               this.employees = this.employees.filter((employee) => {
                 return employee.id != id;

@@ -6023,6 +6023,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+var token = localStorage.getItem('token');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_created$data$created = {
   created: function created() {
     if (!User.loggedIn()) {
@@ -6051,7 +6052,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
   var _this = this;
 
   var id = this.$route.params.id;
-  axios.get("/api/employee/" + id).then(function (_ref) {
+  axios.get("/api/employee/" + id, {
+    headers: {
+      'Authorization': "Bearer ".concat(token)
+    }
+  }).then(function (_ref) {
     var data = _ref.data;
     return _this.form = data;
   })["catch"](function (error) {
@@ -6079,7 +6084,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     var _this3 = this;
 
     var id = this.$route.params.id;
-    axios.patch("/api/employee/" + id, this.form).then(function () {
+    axios.patch("/api/employee/" + id, this.form, {
+      headers: {
+        'Authorization': "Bearer ".concat(token)
+      }
+    }).then(function () {
       _this3.$router.push({
         name: "employee"
       });
@@ -6191,6 +6200,7 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
 //
 //
 //
+var token = localStorage.getItem('token');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (_defineProperty({
   created: function created() {
     if (!User.loggedIn()) {
@@ -6218,7 +6228,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
     allEmployee: function allEmployee() {
       var _this2 = this;
 
-      axios.get("/api/employee/").then(function (_ref) {
+      axios.get("/api/employee", {
+        headers: {
+          'Authorization': "Bearer ".concat(token)
+        }
+      }).then(function (_ref) {
         var data = _ref.data;
         return _this2.employees = data;
       })["catch"]();
@@ -6236,7 +6250,11 @@ function _defineProperty(obj, key, value) { if (key in obj) { Object.definePrope
         confirmButtonText: "Yes, delete it!"
       }).then(function (result) {
         if (result.value) {
-          axios["delete"]("/api/employee/" + id).then(function () {
+          axios["delete"]("/api/employee/" + id, {
+            headers: {
+              'Authorization': "Bearer ".concat(token)
+            }
+          }).then(function () {
             _this3.employees = _this3.employees.filter(function (employee) {
               return employee.id != id;
             });
