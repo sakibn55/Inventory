@@ -1,10 +1,11 @@
 <template>
-<div>
+  <div>
     <div class="row">
       <router-link to="/employee" class="btn btn-primary"
         >All Employee
       </router-link>
     </div>
+
     <div class="row justify-content-center">
       <div class="col-xl-12 col-lg-12 col-md-12">
         <div class="card shadow-sm my-5">
@@ -13,12 +14,12 @@
               <div class="col-lg-12">
                 <div class="login-form">
                   <div class="text-center">
-                    <h1 class="h4 text-gray-900 mb-4">Add Employee</h1>
+                    <h1 class="h4 text-gray-900 mb-4">Employee Update</h1>
                   </div>
 
                   <form
                     class="user"
-                    @submit.prevent="employeeInsert"
+                    @submit.prevent="employeeUpdate"
                     enctype="multipart/form-data"
                   >
                     <div class="form-group">
@@ -159,7 +160,7 @@
 
                     <div class="form-group">
                       <button type="submit" class="btn btn-primary btn-block">
-                        Submit
+                        Update
                       </button>
                     </div>
                   </form>
@@ -173,49 +174,60 @@
         </div>
       </div>
     </div>
-</div>
+  </div>
 </template>
 
-<script type="text/javascript">
 
+
+<script type="text/javascript">
 export default {
-    created(){
-      if (!User.loggedIn()) {
-        this.$router.push({name: '/'})
-      }
-    },
-    data() {
+  created() {
+    if (!User.loggedIn()) {
+      this.$router.push({ name: "/" });
+    }
+  },
+
+  data() {
     return {
       form: {
-        name: null,
-        email: null,
-        phone: null,
-        sallery: null,
-        address: null,
-        photo: null,
-        nid: null,
-        joining_date: null,
+        name: "",
+        email: "",
+        phone: "",
+        sallery: "",
+        address: "",
+        photo: "",
+        newphoto: "",
+        nid: "",
+        joining_date: "",
       },
       errors: {},
     };
   },
-  methods:{
+  created() {
+    let id = this.$route.params.id;
+    axios
+      .get("/api/employee/" + id)
+      .then(({ data }) => (this.form = data))
+      .catch((error) => console.log(error));
+  },
+
+  methods: {
     onFileSelected(event) {
-        let file = event.target.files[0];
-        if (file.size > 1048770) {
-            Notification.image_validation();
-        } else {
-            let reader = new FileReader();
-            reader.onload = (event) => {
-            this.form.photo = event.target.result;
-            console.log(event.target.result);
-            };
-            reader.readAsDataURL(file);
-        }
+      let file = event.target.files[0];
+      if (file.size > 1048770) {
+        Notification.image_validation();
+      } else {
+        let reader = new FileReader();
+        reader.onload = (event) => {
+          this.form.newphoto = event.target.result;
+        };
+        reader.readAsDataURL(file);
+      }
     },
-    employeeInsert() {
-        axios
-        .post("/api/employee", this.form)
+    employeeUpdate() {
+      let id = this.$route.params.id;
+      axios
+        .patch("/api/employee/" + id, this.form)
         .then(() => {
           this.$router.push({ name: "employee" });
           Notification.success();
@@ -223,5 +235,9 @@ export default {
         .catch((error) => (this.errors = error.response.data.errors));
     },
   },
-}
+};
 </script>
+
+
+<style type="text/css">
+</style>
