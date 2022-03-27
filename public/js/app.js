@@ -5767,6 +5767,7 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
+var token = localStorage.getItem('token');
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     if (!User.loggedIn()) {
@@ -5812,7 +5813,11 @@ __webpack_require__.r(__webpack_exports__);
     employeeInsert: function employeeInsert() {
       var _this2 = this;
 
-      axios.post("/api/employee", this.form).then(function () {
+      axios.post("/api/employee", this.form, {
+        headers: {
+          'Authorization': "Bearer ".concat(token)
+        }
+      }).then(function () {
         _this2.$router.push({
           name: "employee"
         });

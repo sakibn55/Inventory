@@ -177,7 +177,7 @@
 </template>
 
 <script type="text/javascript">
-
+const token = localStorage.getItem('token');
 export default {
     created(){
       if (!User.loggedIn()) {
@@ -215,7 +215,11 @@ export default {
     },
     employeeInsert() {
         axios
-        .post("/api/employee", this.form)
+        .post("/api/employee", this.form,{
+            headers: {
+                'Authorization': `Bearer ${token}`
+            }
+        })
         .then(() => {
           this.$router.push({ name: "employee" });
           Notification.success();
