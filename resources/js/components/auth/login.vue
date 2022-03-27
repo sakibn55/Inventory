@@ -90,6 +90,7 @@ export default {
         email: null,
         password: null,
       },
+      errors:{}
     };
   },
   methods: {
@@ -104,7 +105,7 @@ export default {
           });
           this.$router.push({ name: "home" });
         })
-        .catch((error) => (this.errors = error.response.data.errors))
+        .catch((error) => (console.log(error.response.data.error)))
         .catch(
           Toast.fire({
             icon: "warning",

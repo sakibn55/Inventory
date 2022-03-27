@@ -308,7 +308,8 @@
                                     <div class="dropdown-divider"></div>
                                     <a class="dropdown-item" href="login.html">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
+                                       <router-link to="/logout" class="ml-2 d-none d-lg-inline small">Logout
+                                    </router-link>
                                     </a>
                                 </div>
                             </li>
