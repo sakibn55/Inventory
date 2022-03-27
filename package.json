@@ -24,6 +24,9 @@
         "vue-template-compiler": "^2.6.12"
     },
     "dependencies": {
+        "jquery": "^3.6.0",
+        "noty": "^3.2.0-beta-deprecated",
+        "popper.js": "^1.16.1",
         "sweetalert2": "^11.4.7",
         "vue-router": "^3.5.3"
     }
