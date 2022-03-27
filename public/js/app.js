@@ -5399,13 +5399,11 @@ __webpack_require__.r(__webpack_exports__);
 //
 //
 //
-//
-//
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = ({
   created: function created() {
     if (User.loggedIn()) {
       this.$router.push({
-        name: 'home'
+        name: "home"
       });
     }
   },
@@ -5421,19 +5419,22 @@ __webpack_require__.r(__webpack_exports__);
     login: function login() {
       var _this = this;
 
-      axios.post('/api/auth/login', this.form).then(function (res) {
+      axios.post("/api/auth/login", this.form).then(function (res) {
         User.responseAfterLogin(res);
         Toast.fire({
-          icon: 'success',
-          title: 'Signed in successfully'
+          icon: "success",
+          title: "Signed in successfully"
         });
 
         _this.$router.push({
-          name: 'home'
+          name: "home"
         });
       })["catch"](function (error) {
-        return console.log(error.response.data);
-      });
+        return _this.errors = error.response.data.errors;
+      })["catch"](Toast.fire({
+        icon: "warning",
+        title: "Invalid Email or Password"
+      }));
     }
   }
 });
@@ -32805,7 +32806,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("Login")]
+        [_vm._v("\n                      Login\n                    ")]
       ),
     ])
   },
