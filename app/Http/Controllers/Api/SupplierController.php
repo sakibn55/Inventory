@@ -2,14 +2,14 @@
 
 namespace App\Http\Controllers\Api;
 
-use Image;
-use App\Models\Employee;
+use App\Models\Supplier;
 use Illuminate\Http\Request;
 use App\Http\Controllers\Controller;
-use Illuminate\Support\Facades\File;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\File;
+use Image;
 
-class EmployeeController extends Controller
+class SupplierController extends Controller
 {
     /**
      * Display a listing of the resource.
@@ -18,11 +18,9 @@ class EmployeeController extends Controller
      */
     public function index()
     {
-        if (!Auth::user()) {
-            return response()->json('Unauthorized action!', 405);
-        }
-        $employee = Employee::orderByDesc("created_at")->get();
-        return response()->json($employee, 200);
+
+        $supplier = Supplier::orderByDesc("created_at")->get();
+        return response()->json($supplier, 200);
     }
 
 
@@ -34,13 +32,11 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
-        if (!Auth::user()) {
-            return response()->json('Unauthorized action!', 405);
-        }
+
         $validateData = $request->validate([
-            'name' => 'required|max:255',
-            'email' => 'required|email',
-            'phone' => 'required|unique:employees',
+            'name' => 'required|unique:suppliers|max:255',
+            'email' => 'required',
+            'phone' => 'required|unique:suppliers',
         ]);
         try {
             $image_url = null;
@@ -51,21 +47,19 @@ class EmployeeController extends Controller
 
                 $name = time() . "." . $ext;
                 $img = Image::make($request->photo)->resize(240, 200);
-                $upload_path = 'backend/employee/';
+                $upload_path = 'backend/supplier/';
                 $image_url = $upload_path . $name;
                 $img->save($image_url);
             }
-            $employee = new Employee();
-            $employee->name = $request->name;
-            $employee->email = $request->email;
-            $employee->phone = $request->phone;
-            $employee->sallery = $request->sallery;
-            $employee->address = $request->address;
-            $employee->nid = $request->nid;
-            $employee->joining_date = $request->joining_date;
-            $employee->photo = $image_url;
-            $employee->save();
-            return response()->json($employee, 201);
+            $supplier = new Supplier();
+            $supplier->name = $request->name;
+            $supplier->email = $request->email;
+            $supplier->phone = $request->phone;
+            $supplier->shopname = $request->shopname;
+            $supplier->address = $request->address;
+            $supplier->photo = $image_url;
+            $supplier->save();
+            return response()->json($supplier, 201);
         } catch (\Throwable $e) {
             return response()->json($e->getMessage(), 400);
         } catch (\PDOException $e) {
@@ -76,37 +70,33 @@ class EmployeeController extends Controller
     /**
      * Display the specified resource.
      *
-     * @param  \App\Models\Employee  $employee
+     * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function show(Employee $employee)
+    public function show(Supplier $supplier)
     {
-        if (!Auth::user()) {
-            return response()->json('Unauthorized action!', 405);
-        }
-        return response()->json($employee, 200);
+
+        return response()->json($supplier, 200);
     }
+
 
     /**
      * Update the specified resource in storage.
      *
      * @param  \Illuminate\Http\Request  $request
-     * @param  \App\Models\Employee  $employee
+     * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
     public function update(Request $request, $id)
     {
-        if (!Auth::user()) {
-            return response()->json('Unauthorized action!', 405);
-        }
+
         $data = array();
         $data['name'] = $request->name;
         $data['email'] = $request->email;
         $data['phone'] = $request->phone;
-        $data['sallery'] = $request->sallery;
+        $data['shopname'] = $request->shopname;
         $data['address'] = $request->address;
-        $data['nid'] = $request->nid;
-        $data['joining_date'] = $request->joining_date;
+
         $image = $request->newphoto;
 
         if ($image) {
@@ -116,13 +106,13 @@ class EmployeeController extends Controller
 
             $name = time() . "." . $ext;
             $img = Image::make($image)->resize(240, 200);
-            $upload_path = 'backend/employee/';
+            $upload_path = 'backend/supplier/';
             $image_url = $upload_path . $name;
             $success = $img->save($image_url);
 
             if ($success) {
                 $data['photo'] = $image_url;
-                $img = Employee::findOrFail($id);
+                $img = Supplier::findOrFail($id);
                 $image_path = $img->photo;
                 $result = File::exists($image_path);
                 if ($result) {
@@ -133,25 +123,23 @@ class EmployeeController extends Controller
             $oldphoto = $request->photo;
             $data['photo'] = $oldphoto;
         }
-        $user = Employee::findOrFail($id)->update($data);
+        $user = Supplier::findOrFail($id)->update($data);
     }
 
     /**
      * Remove the specified resource from storage.
      *
-     * @param  \App\Models\Employee  $employee
+     * @param  \App\Models\Supplier  $supplier
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Employee $employee)
+    public function destroy(Supplier $supplier)
     {
-        if (!Auth::user()) {
-            return response()->json('Unauthorized action!', 405);
-        }
-        $photo = $employee->photo;
+
+        $photo = $supplier->photo;
         $result = File::exists($photo);
         if ($result != null) {
             unlink($photo);
         }
-        $employee->delete();
+        $supplier->delete();
     }
 }
