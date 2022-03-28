@@ -216,11 +216,11 @@
                                         Activity Log
                                     </a>
                                     <div class="dropdown-divider"></div>
-                                    <a class="dropdown-item" href="login.html">
+                                    <router-link class="dropdown-item" to="/logout">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
                                        <router-link to="/logout" class="ml-2 d-none d-lg-inline small">Logout
                                     </router-link>
-                                    </a>
+                                    </router-link>
                                 </div>
                             </li>
                         </ul>
