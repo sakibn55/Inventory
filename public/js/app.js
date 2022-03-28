@@ -23140,7 +23140,7 @@ __webpack_require__.r(__webpack_exports__);
 
 var ___CSS_LOADER_EXPORT___ = _node_modules_laravel_mix_node_modules_css_loader_dist_runtime_api_js__WEBPACK_IMPORTED_MODULE_0___default()(function(i){return i[1]});
 // Module
-___CSS_LOADER_EXPORT___.push([module.id, "\n#em_photo {\n  height: 40px;\n  width: 40px;\n}\n", ""]);
+___CSS_LOADER_EXPORT___.push([module.id, "\n#em_photo {\r\n  height: 40px;\r\n  width: 40px;\n}\r\n", ""]);
 // Exports
 /* harmony default export */ const __WEBPACK_DEFAULT_EXPORT__ = (___CSS_LOADER_EXPORT___);
 
@@ -51251,7 +51251,7 @@ var render = function () {
         _c(
           "router-link",
           { staticClass: "btn btn-primary", attrs: { to: "/employee" } },
-          [_vm._v("All Employee\n      ")]
+          [_vm._v("All Employee\r\n      ")]
         ),
       ],
       1
@@ -51315,9 +51315,9 @@ var render = function () {
                             _vm.errors.name
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\r\n                            " +
                                       _vm._s(_vm.errors.name[0]) +
-                                      "\n                          "
+                                      "\r\n                          "
                                   ),
                                 ])
                               : _vm._e(),
@@ -51357,9 +51357,9 @@ var render = function () {
                             _vm.errors.email
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\r\n                            " +
                                       _vm._s(_vm.errors.email[0]) +
-                                      "\n                          "
+                                      "\r\n                          "
                                   ),
                                 ])
                               : _vm._e(),
@@ -51403,9 +51403,9 @@ var render = function () {
                             _vm.errors.address
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\r\n                            " +
                                       _vm._s(_vm.errors.address[0]) +
-                                      "\n                          "
+                                      "\r\n                          "
                                   ),
                                 ])
                               : _vm._e(),
@@ -51445,9 +51445,9 @@ var render = function () {
                             _vm.errors.sallery
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\r\n                            " +
                                       _vm._s(_vm.errors.sallery[0]) +
-                                      "\n                          "
+                                      "\r\n                          "
                                   ),
                                 ])
                               : _vm._e(),
@@ -51491,9 +51491,9 @@ var render = function () {
                             _vm.errors.joining_date
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\r\n                            " +
                                       _vm._s(_vm.errors.joining_date[0]) +
-                                      "\n                          "
+                                      "\r\n                          "
                                   ),
                                 ])
                               : _vm._e(),
@@ -51529,9 +51529,9 @@ var render = function () {
                             _vm.errors.nid
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\r\n                            " +
                                       _vm._s(_vm.errors.nid[0]) +
-                                      "\n                          "
+                                      "\r\n                          "
                                   ),
                                 ])
                               : _vm._e(),
@@ -51575,9 +51575,9 @@ var render = function () {
                             _vm.errors.phone
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\r\n                            " +
                                       _vm._s(_vm.errors.phone[0]) +
-                                      "\n                          "
+                                      "\r\n                          "
                                   ),
                                 ])
                               : _vm._e(),
@@ -51599,9 +51599,9 @@ var render = function () {
                             _vm.errors.photo
                               ? _c("small", { staticClass: "text-danger" }, [
                                   _vm._v(
-                                    "\n                            " +
+                                    "\r\n                            " +
                                       _vm._s(_vm.errors.photo[0]) +
-                                      "\n                          "
+                                      "\r\n                          "
                                   ),
                                 ])
                               : _vm._e(),
@@ -51662,7 +51662,7 @@ var staticRenderFns = [
       _c(
         "button",
         { staticClass: "btn btn-primary btn-block", attrs: { type: "submit" } },
-        [_vm._v("\n                        Submit\n                      ")]
+        [_vm._v("\r\n                        Submit\r\n                      ")]
       ),
     ])
   },
