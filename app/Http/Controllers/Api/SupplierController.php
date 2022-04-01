@@ -123,7 +123,7 @@ class SupplierController extends Controller
             $oldphoto = $request->photo;
             $data['photo'] = $oldphoto;
         }
-        $user = Supplier::findOrFail($id)->update($data);
+        $supplier = Supplier::findOrFail($id)->update($data);
     }
 
     /**
