@@ -257,6 +257,13 @@
     <script src="{{ asset('backend/vendor/jquery/jquery.min.js') }}"></script>
     <script src="{{ asset('backend/vendor/bootstrap/js/bootstrap.bundle.min.js') }}"></script>
 
+    <script src="{{ asset('backend/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
+    <script src="{{ asset('backend/js/ruang-admin.min.js') }}"></script>
+    <script src="{{ asset('backend/vendor/chart.js/Chart.min.js') }}"></script>
+    <script src="{{ asset('backend/js/demo/chart-area-demo.js') }}"></script>
+    <script src="{{ asset('backend/vendor/datatables/jquery.dataTables.min.js') }}"></script>
+    <script src="{{ asset('backend/vendor/datatables/dataTables.bootstrap4.min.js') }}"></script>
+
     <script type="text/javascript">
         let token = localStorage.getItem('token');
         if (token) {
@@ -264,13 +271,15 @@
             $("#topbar").css("display", "");
 
         }
+        $(document).ready(function () {
+            setInterval(myTimer, 1000);
+            function myTimer() {
+                $('#dataTable').DataTable(); // ID From dataTable
+                $('#dataTableHover').DataTable(); // ID From dataTable
+            }
+
+        });
     </script>
-
-
-    <script src="{{ asset('backend/vendor/jquery-easing/jquery.easing.min.js') }}"></script>
-    <script src="{{ asset('backend/js/ruang-admin.min.js') }}"></script>
-    <script src="{{ asset('backend/vendor/chart.js/Chart.min.js') }}"></script>
-    <script src="{{ asset('backend/js/demo/chart-area-demo.js') }}"></script>
 </body>
 
 </html>
