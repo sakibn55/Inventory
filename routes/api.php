@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\Api\CategoryController;
 use App\Http\Controllers\Api\EmployeeController;
+use App\Http\Controllers\Api\ExpenseController;
 use App\Http\Controllers\Api\ProductController;
 use App\Http\Controllers\Api\SupplierController;
 
@@ -25,5 +26,6 @@ Route::apiResource('employee', EmployeeController::class);
 Route::apiResource('supplier', SupplierController::class);
 Route::apiResource('category', CategoryController::class);
 Route::apiResource('product', ProductController::class);
+Route::apiResource('expense', ExpenseController::class);
 
 
